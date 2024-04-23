@@ -1,7 +1,7 @@
-import Head from 'next/head';
-import { FC, ReactNode } from 'react';
-import { ValidCollectionCodename } from '../../../lib/types/perCollection';
-import { createItemSmartLink } from '../../../lib/utils/smartLinkUtils';
+import Head from "next/head";
+import { FC, ReactNode } from "react";
+import { ValidCollectionCodename } from "../../../lib/types/perCollection";
+import { createItemSmartLink } from "../../../lib/utils/smartLinkUtils";
 import {
   Article,
   Event,
@@ -10,16 +10,30 @@ import {
   WSL_Page,
   WSL_WebSpotlightRoot,
   Course,
-} from '../../../models';
-import { SiteCodenameProvider } from '../siteCodenameContext';
+} from "../../../models";
+import { SiteCodenameProvider } from "../siteCodenameContext";
+import { Footer } from "./footer";
+import { getSeoAndSharingDetails } from "../../../lib/utils/seo-utils";
+import { NextSeo } from "next-seo";
+import { useLivePreview } from "../contexts/LivePreview";
+import { ResolutionContext, resolveUrlPath } from "../../../lib/routing";
+import { IContentItem } from "@kontent-ai/delivery-sdk";
+import { parse } from "node-html-parser";
+
+/*
+-----
+Page layout modifiers
+-----
+1. Default menu
 import { Menu } from './menu';
-import { Footer } from './footer';
-import { getSeoAndSharingDetails } from '../../../lib/utils/seo-utils';
-import { NextSeo } from 'next-seo';
-import { useLivePreview } from '../contexts/LivePreview';
-import { ResolutionContext, resolveUrlPath } from '../../../lib/routing';
-import { IContentItem } from '@kontent-ai/delivery-sdk';
-import { parse } from 'node-html-parser';
+
+2. Fullwidth menu
+import { Menu } from './menu--fullwidth';
+
+*/
+
+// Replace line below with desired menu type from above
+import { Menu } from "./menu--fullwidth";
 
 type AcceptedItem =
   | WSL_WebSpotlightRoot
@@ -36,7 +50,7 @@ type Props = Readonly<{
   item: AcceptedItem;
   defaultMetadata: SEOMetadata;
   variants: IContentItem[];
-  pageType: 'WebPage' | 'Article' | 'Product' | 'FAQ' | 'Event' | 'Course';
+  pageType: "WebPage" | "Article" | "Product" | "FAQ" | "Event" | "Course";
   isPreview: boolean;
 }>;
 
@@ -47,18 +61,20 @@ export const AppPage: FC<Props> = ({
   variants,
   item,
   defaultMetadata,
-  isPreview }) => {
+  isPreview,
+}) => {
   const data = useLivePreview({
     item,
-    defaultMetadata
+    defaultMetadata,
   });
 
   const seoDetails = getSeoAndSharingDetails({
     page: item,
-    url: process.env.NEXT_PUBLIC_DOMAIN + resolveUrlPath(
-      {
+    url:
+      process.env.NEXT_PUBLIC_DOMAIN +
+      resolveUrlPath({
         type: item.system.type,
-        slug: item.elements.url?.value
+        slug: item.elements.url?.value,
       } as ResolutionContext),
     siteCodename: siteCodename,
   });
@@ -78,15 +94,15 @@ export const AppPage: FC<Props> = ({
         nofollow={seoDetails.nofollow}
         noindex={seoDetails.noindex}
       />
-      <div className='flex justify-between'></div>
+      <div className="flex justify-between"></div>
       <div
-        className='min-h-full grow flex flex-col items-center overflow-hidden'
-        {...createItemSmartLink(
-          item.system.id,
-          item.system.name
-        )}
+        className="min-h-full grow flex flex-col items-center overflow-hidden"
+        {...createItemSmartLink(item.system.id, item.system.name)}
       >
-        {item.elements.hide.value.length === 0 || !item.elements.hide.value.find(hide => hide?.codename === "header") ? (
+        {item.elements.hide.value.length === 0 ||
+        !item.elements.hide.value.find(
+          (hide) => hide?.codename === "header"
+        ) ? (
           <Menu
             item={item}
             homeContentItem={homeContentItem}
@@ -96,16 +112,15 @@ export const AppPage: FC<Props> = ({
         ) : null}
         <main
           data-kontent-language-codename={item.system.language}
-          className='py-24 md:px-6 px-3 sm:px-8 max-w-screen-xl grow h-full w-screen'
-          {...createItemSmartLink(
-            item.system.id,
-            item.system.name,
-            true
-          )}
+          className="py-24 md:px-6 px-3 sm:px-8 max-w-screen-xl grow h-full w-screen"
+          {...createItemSmartLink(item.system.id, item.system.name, true)}
         >
-          <div className='prose w-full max-w-full pt-16'>{children}</div>
+          <div className="prose w-full max-w-full pt-16">{children}</div>
         </main>
-        {item.elements.hide.value.length === 0 || !item.elements.hide.value.find(hide => hide?.codename === "footer") ? (
+        {item.elements.hide.value.length === 0 ||
+        !item.elements.hide.value.find(
+          (hide) => hide?.codename === "footer"
+        ) ? (
           <Footer item={item} homeContentItem={homeContentItem} />
         ) : null}
       </div>
@@ -113,32 +128,38 @@ export const AppPage: FC<Props> = ({
   );
 };
 
-AppPage.displayName = 'Page';
+AppPage.displayName = "Page";
 
 const PageMetadata: FC<
-  Pick<Props, 'item' | 'defaultMetadata' | 'variants'>
+  Pick<Props, "item" | "defaultMetadata" | "variants">
 > = ({ item, defaultMetadata, variants }) => {
   const pageMetaKeywords =
     item.elements.seoMetadataKeywords.value ||
     defaultMetadata?.elements?.seoMetadataKeywords.value;
 
-  
   // Parse the openGraphMetadataOpengraphAdditionalTags value to create meta tags
-  const root = parse(item.elements.openGraphMetadataOpengraphAdditionalTags.value);
-  const metaTags = root.querySelectorAll('meta');
+  const root = parse(
+    item.elements.openGraphMetadataOpengraphAdditionalTags.value
+  );
+  const metaTags = root.querySelectorAll("meta");
 
   return (
     <Head>
-      <link rel='icon' href='/favicon.png' />
-      {pageMetaKeywords &&
-        <meta name='keywords' content={pageMetaKeywords} />
-      }
+      <link rel="icon" href="/favicon.png" />
+      {pageMetaKeywords && <meta name="keywords" content={pageMetaKeywords} />}
       {variants?.map((variant, index) => (
-        <link key={index} rel="alternate" hrefLang={variant.system.language} href={process.env.NEXT_PUBLIC_DOMAIN + resolveUrlPath(
-          {
-            type: variant.system.type,
-            slug: variant.elements.url?.value
-          } as ResolutionContext)} />
+        <link
+          key={index}
+          rel="alternate"
+          hrefLang={variant.system.language}
+          href={
+            process.env.NEXT_PUBLIC_DOMAIN +
+            resolveUrlPath({
+              type: variant.system.type,
+              slug: variant.elements.url?.value,
+            } as ResolutionContext)
+          }
+        />
       ))}
       {/* Render the parsed Open Graph meta tags */}
       {metaTags.map((tag, index) => (
