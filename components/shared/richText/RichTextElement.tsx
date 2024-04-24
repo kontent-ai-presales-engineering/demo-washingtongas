@@ -1,14 +1,14 @@
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
 import { Elements } from "@kontent-ai/delivery-sdk";
 import {
-  IPortableTextComponent,
-  IPortableTextImage,
-  IPortableTextInternalLink,
-  IPortableTextItem,
-  IPortableTextTable,
-} from "@kontent-ai/rich-text-resolver";
-import { nodeParse } from "@kontent-ai/rich-text-resolver/dist/cjs/src/parser/node";
-import { transformToPortableText } from "@kontent-ai/rich-text-resolver/dist/cjs/src/transformers/portable-text-transformer";
+  PortableTextComponent,
+  PortableTextImage,
+  PortableTextInternalLink,
+  PortableTextItem,
+  PortableTextTable,
+  nodeParse,
+  transformToPortableText,
+} from '@kontent-ai/rich-text-resolver';
 import {
   PortableText,
   PortableTextMarkComponentProps,
@@ -86,7 +86,7 @@ export const createDefaultResolvers = (
   language = "en-gb"
 ): Partial<PortableTextReactComponents> => ({
   types: {
-    image: ({ value }: PortableTextTypeComponentProps<IPortableTextImage>) => {
+    image: ({ value }: PortableTextTypeComponentProps<PortableTextImage>) => {
       const asset = element.images.find((i) => i.imageId === value.asset._ref);
       if (!asset) {
         return null;
@@ -116,7 +116,7 @@ export const createDefaultResolvers = (
         </span>
       );
     },
-    table: ({ value }: PortableTextTypeComponentProps<IPortableTextTable>) => {
+    table: ({ value }: PortableTextTypeComponentProps<PortableTextTable>) => {
       return (
         <table className="table-auto">
           <tbody>
@@ -127,7 +127,7 @@ export const createDefaultResolvers = (
                     <RichTextValue
                       isInsideTable
                       language={language}
-                      value={c.content}
+                      value={c.content as PortableTextItem[]}
                       element={element}
                     />
                   </td>
@@ -140,7 +140,7 @@ export const createDefaultResolvers = (
     },
     component: ({
       value,
-    }: PortableTextTypeComponentProps<IPortableTextComponent>) => {
+    }: PortableTextTypeComponentProps<PortableTextComponent>) => {
       const componentItem = element.linkedItems.find(
         (i) => i.system.codename === value.component._ref
       );
@@ -210,7 +210,7 @@ export const createDefaultResolvers = (
     internalLink: ({
       value,
       children,
-    }: PortableTextMarkComponentProps<IPortableTextInternalLink>) => {
+    }: PortableTextMarkComponentProps<PortableTextInternalLink>) => {
       const link = element.links.find(
         (l) => l.linkId === value?.reference._ref
       );
@@ -292,7 +292,7 @@ export const RichTextElement: FC<ElementProps> = (props) => {
 type RichTextValueProps = Readonly<{
   element: Elements.RichTextElement;
   language: string;
-  value: IPortableTextItem[];
+  value: PortableTextItem[];
   isInsideTable: boolean;
 }>;
 
