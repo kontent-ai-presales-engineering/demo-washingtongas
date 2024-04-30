@@ -1,13 +1,13 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { FC, useState } from 'react';
-import { WSL_Page, WSL_WebSpotlightRoot } from '../../../models';
-import { useSiteCodename } from '../siteCodenameContext';
-import { IContentItem } from '@kontent-ai/delivery-sdk';
-import { ResolutionContext, resolveUrlPath } from '../../../lib/routing';
-import { isMultipleChoiceOptionPresent } from '../../../lib/utils/element-utils';
-import { perCollectionSEOTitle } from '../../../lib/constants/labels';
-import { PersonasBar } from './personasBar';
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { FC, useState } from "react";
+import { WSL_Page, WSL_WebSpotlightRoot } from "../../../models";
+import { useSiteCodename } from "../siteCodenameContext";
+import { IContentItem } from "@kontent-ai/delivery-sdk";
+import { ResolutionContext, resolveUrlPath } from "../../../lib/routing";
+import { isMultipleChoiceOptionPresent } from "../../../lib/utils/element-utils";
+import { perCollectionSEOTitle } from "../../../lib/constants/labels";
+import { PersonasBar } from "./personasBar";
 
 type Link = Readonly<WSL_Page>;
 
@@ -34,27 +34,25 @@ const MenuList: FC<MenuListProps> = (props) => {
   return (
     <ul
       className={`${
-        props.smallMenuActive ? 'flex' : 'hidden'
+        props.smallMenuActive ? "flex" : "hidden"
       } flex-col md:flex md:gap-4 font-medium md:flex-row h-full`}
     >
       {props.items.map(
         (link, i) =>
           isMultipleChoiceOptionPresent(
             link.elements.navigationStructures?.value,
-            'footer'
+            "footer"
           ) && (
             <li key={i} onClick={() => props.handleClick(i)}>
               {link.elements.subpages.value.length > 0 ? (
                 <>
                   <Link
-                    rel='noopener noreferrer'
-                    className=''
-                    href={resolveUrlPath(
-                      {
-                        type: link.system.type,
-                        slug: link.elements.url.value,
-                      } as ResolutionContext
-                    )}
+                    rel="noopener noreferrer"
+                    className=""
+                    href={resolveUrlPath({
+                      type: link.system.type,
+                      slug: link.elements.url.value,
+                    } as ResolutionContext)}
                   >
                     {link.elements.title.value}
                   </Link>
@@ -62,14 +60,12 @@ const MenuList: FC<MenuListProps> = (props) => {
                 </>
               ) : (
                 <Link
-                  rel='noopener noreferrer'
-                  className=''
-                  href={resolveUrlPath(
-                    {
-                      type: link.system.type,
-                      slug: link.elements.url.value,
-                    } as ResolutionContext
-                  )}
+                  rel="noopener noreferrer"
+                  className=""
+                  href={resolveUrlPath({
+                    type: link.system.type,
+                    slug: link.elements.url.value,
+                  } as ResolutionContext)}
                 >
                   {link.elements.title.value}
                 </Link>
@@ -90,18 +86,16 @@ const ChildLinks: FC<DropdownMenuProps> = (props) => {
         (link) =>
           isMultipleChoiceOptionPresent(
             link.elements.navigationStructures?.value,
-            'footer'
+            "footer"
           ) && (
             <li key={link.system.codename}>
               <Link
-                rel='noopener noreferrer'
-                className=''
-                href={resolveUrlPath(
-                  {
-                    type: link.system.type,
-                    slug: link.elements.url.value,
-                  } as ResolutionContext
-                )}
+                rel="noopener noreferrer"
+                className=""
+                href={resolveUrlPath({
+                  type: link.system.type,
+                  slug: link.elements.url.value,
+                } as ResolutionContext)}
               >
                 {link.elements.title.value}
               </Link>
@@ -121,13 +115,17 @@ export const Footer: FC<Props> = (props) => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={`bg-gradient-to-tl from-rose-950 to-manufacturing-dark w-screen py-8 text-white`}>
-      <div className='flex items-center mx-auto max-w-screen-xl px-4'>
-        <div className='w-screen h-full md:flex justify-between z-40 md:pr-24 xl:pr-12 2xl:pr-0'>
-          <div className='flex flex-row w-full justify-center'>            
+    <footer
+      className={`bg-gradient-to-tl from-manufacturing to-manufacturing-dark w-screen py-8 text-white`}
+    >
+      <div className="flex items-center mx-auto max-w-screen-xl px-4">
+        <div className="w-screen h-full md:flex justify-between z-40 md:pr-24 xl:pr-12 2xl:pr-0">
+          <div className="flex flex-row w-full justify-center">
             <div>{perCollectionSEOTitle[siteCodename]}</div>
-            <div className='border-l-2 border-r-2 pl-4 ml-4 pr-4 mr-4'>Copyright {currentYear}</div>
-            <PersonasBar display='desktop' />
+            <div className="border-l-2 border-r-2 pl-4 ml-4 pr-4 mr-4">
+              Copyright {currentYear}
+            </div>
+            <PersonasBar display="desktop" />
             {/* <MenuList
               smallMenuActive={smallMenuActive}
               items={props.homeContentItem.elements.subpages.linkedItems}
@@ -141,4 +139,4 @@ export const Footer: FC<Props> = (props) => {
   );
 };
 
-Footer.displayName = 'FooterMenu';
+Footer.displayName = "FooterMenu";

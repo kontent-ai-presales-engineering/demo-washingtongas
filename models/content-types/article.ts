@@ -52,6 +52,9 @@ export type Article = IContentItem<{
      */
     heroImage: Elements.AssetsElement;
 
+    headerType: Elements.TaxonomyElement<ArticleCategory>;
+    headerColor: Elements.TextElement;
+
     /**
      * Hide (multiple_choice)
      * Required: false

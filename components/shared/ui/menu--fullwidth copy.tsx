@@ -98,7 +98,7 @@ const MenuList: FC<MenuListProps> = (props) => {
               }
               ${
                 mainColorBorderClass[siteCodename]
-              } text-sm font-semibold leading-6 text-gray-900`}
+              } border- border-l-8 border-t-0 md:border-t-4 md:border-l-0 h-full group grow`}
               onClick={() => props.handleClick(i)}
             >
               {link.elements.url.value == reservedListingSlugs.articles ||
@@ -112,7 +112,7 @@ const MenuList: FC<MenuListProps> = (props) => {
                   <div
                     className={`${
                       i === props.activeMenu ? "block" : "hidden"
-                    } md:group-hover:block absolute z-50 shadow-2xl bg-white text-black border-gray-200 `}
+                    } md:group-hover:block absolute z-50 left-0 shadow-2xl bg-white text-black border-gray-200 w-full `}
                   >
                     <DropdownMenuItems
                       links={link.elements.subpages.linkedItems}
@@ -127,7 +127,7 @@ const MenuList: FC<MenuListProps> = (props) => {
               ) : (
                 <Link
                   rel="noopener noreferrer"
-                  className="h-full flex items-center justify-center py-4 px-2 font-medium text-black border-b border-gray-100 w-fit md:w-auto md:bg-transparent md:border-0 md:rounded-2xl duration-100"
+                  className="h-full flex items-center justify-center w-full py-4 px-6 font-medium text-black border-b border-gray-100 md:w-auto md:bg-transparent md:border-0 md:hover:bg-slate-100 md:rounded-2xl duration-100"
                   href={resolveUrlPath({
                     type: link.system.type,
                     slug: link.elements.url.value,
@@ -145,10 +145,10 @@ const MenuList: FC<MenuListProps> = (props) => {
 
 const DropdownButton: FC<Props> = (props) => {
   return (
-    <button className=" h-full flex items-center justify-between w-fit md:w-full p-2 py-2 font-medium border-b border-gray-100 md:bg-transparent md:border-0">
+    <button className="md:m-auto md:w-5/6 h-full flex items-center justify-between w-full p-4 py-2 font-medium border-b border-gray-100 md:bg-transparent md:border-0">
       <Link
         rel="noopener noreferrer"
-        className="text-sm font-semibold leading-6 text-gray-900 flex flex-row"
+        className="w-full  h-full flex items-center justify-center w-full py-2 font-medium text-black md:bg-transparent md:border-0 md:hover:bg-white hover:text-gray-900"
         href={resolveUrlPath({
           type: props.item.system.type,
           slug: props.item.elements.url.value,
@@ -166,7 +166,7 @@ const DropdownMenuItems: FC<DropdownMenuProps> = (props) => {
   const siteCodename = useSiteCodename();
 
   return (
-    <ul className="grid mx-auto w-56 text-black sm:grid-cols-1 md:grid-cols-1">
+    <ul className="grid gap-2 px-4 py-5 mx-auto text-black sm:grid-cols-2 md:grid-cols-3 md:px-6">
       {props.taxonomies?.length > 0
         ? props.taxonomies?.slice(0, 6).map((taxonomy) => (
             <li key={taxonomy.codename}>
@@ -196,9 +196,14 @@ const DropdownMenuItems: FC<DropdownMenuProps> = (props) => {
                       type: link.system.type,
                       slug: link.elements.url?.value,
                     } as ResolutionContext)}
-                    className={``}
+                    className={`${
+                      isCurrentNavigationItemActive(link, router)
+                        ? "border-l-gray-500 cursor-default "
+                        : `border-l-transparent ${mainColorHoverBorder[siteCodename]}`
+                    }
+          block p-3 bg-slate-100 border-l-4 h-full`}
                   >
-                    <div className="flex w-full items-center hover:bg-[#245EA4] hover:text-white duration-100 px-2 py-2 text-sm font-semibold leading-6 text-gray-900">
+                    <div className="font-semibold py-4">
                       {link.elements.title?.value}
                     </div>
                   </Link>
@@ -217,7 +222,7 @@ export const Menu: FC<Props> = (props) => {
 
   return (
     <div
-      className={`w-full fixed z-30 py-4 h-28 bg-white`}
+      className={`w-full fixed z-30 py-4 shadow-2xl h-28 bg-white`}
       style={{
         paddingLeft: "50px",
         paddingRight: "50px",
@@ -259,7 +264,7 @@ export const Menu: FC<Props> = (props) => {
               </button>
             </div>
           </div>
-          <div className="md:w-fit flex md:items-center flex-row md:justify-center">
+          <div className="w-full">
             <MenuList
               smallMenuActive={smallMenuActive}
               items={props.homeContentItem.elements.subpages.linkedItems}
@@ -270,20 +275,6 @@ export const Menu: FC<Props> = (props) => {
           </div>
           <div className="hidden md:flex">
             <LanguageBar display="mobile" variants={props.variants} />
-            <div className="flex flex-row w-full items-center justify-center gap-4">
-              <a
-                href="#"
-                className="bg-[#245EA4] w-full block text-white whitespace-nowrap shadow-sm hover:bg-[#245ea4e0] py-2.5 px-3.5 text-center text-sm font-semibold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 undefined"
-              >
-                Log In
-              </a>
-              <a
-                href="#"
-                className="text-sm w-full block whitespace-nowrap text-center font-semibold py-2.5 text-gray-900"
-              >
-                Sign Up
-              </a>
-            </div>
           </div>
         </div>
       </div>
