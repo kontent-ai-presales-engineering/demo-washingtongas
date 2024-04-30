@@ -10,13 +10,13 @@ type Props = Readonly<{
   itemId?: string;
   itemName?: string;
   type: string;
+  height: number;
 }>;
 
 export const HeroImage: FC<Props> = (props) => (
   <figure
-    className={`component_full-width relative mt-0 h-[32rem] mb-16 ${
-      props.className ?? ""
-    }`}
+    className={`component_full-width relative mt-0 ${props.className ?? ""}`}
+    style={{ height: props.height }}
     {...createItemSmartLink(props.itemId, props.itemName)}
   >
     {props.type?.startsWith("image") && (

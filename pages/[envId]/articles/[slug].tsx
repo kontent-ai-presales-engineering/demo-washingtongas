@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { FC } from "react";
-import { HeroImage } from "../../../components/landingPage/ui/heroImage";
+import { HeroImage } from "../../../components/landingPage/ui/heroImage--fullwidth";
 import { RichTextElement } from "../../../components/shared/richText/RichTextElement";
 import { AppPage } from "../../../components/shared/ui/appPage";
 import { mainColorBgClass } from "../../../lib/constants/colors";
@@ -63,7 +63,6 @@ const ArticlePage: FC<Props> = ({
   console.log(article);
 
   const headerType = article.elements.headerType?.value[0]?.name;
-  console.log(headerType);
 
   return (
     <AppPage
@@ -81,10 +80,9 @@ const ArticlePage: FC<Props> = ({
           url={article.elements.heroImage.value[0]?.url || ""}
           itemId={article.system.id}
           type={article.elements.heroImage.value[0]?.type}
+          height={article.elements.headerHeightPx.value}
         >
-          <div
-            className={`py-1 px-3 max-w-screen-md md:w-fit text-center mx-auto mb-4`}
-          >
+          <div className={`py-1 px-3 md:w-fit text-center mx-auto mb-4`}>
             <h1
               className={`m-0 text-3xl tracking-wide font-semibold text-white`}
             >

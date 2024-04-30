@@ -54,6 +54,7 @@ export type Article = IContentItem<{
 
     headerType: Elements.TaxonomyElement<ArticleCategory>;
     headerColor: Elements.TextElement;
+    headerHeightPx: Elements.NumberElement;
 
     /**
      * Hide (multiple_choice)
