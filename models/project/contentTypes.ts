@@ -1970,7 +1970,15 @@ export const contentTypes = {
                 name: 'Title',
                 required: false,
                 type: 'text'
-            }
+            },
+            image: {
+                codename: 'image',
+                id: '0000000-0000-0000-0000-000000000003',
+                externalId: undefined,
+                name: 'Image',
+                required: false,
+                type: 'asset'
+            },
         }
     },
 
