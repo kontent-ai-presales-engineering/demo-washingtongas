@@ -1955,13 +1955,13 @@ export const contentTypes = {
     },
 
     /**
-     * Banner
+     * Builder Banner
      */
-    banner: {
-        codename: 'banner',
+    builder_banner: {
+        codename: 'builder_banner',
         id: '0000000-0000-0000-0000-000000000001',
         externalId: undefined,
-        name: 'Banner',
+        name: 'Builder Banner',
         elements: {
             title: {
                 codename: 'title',
@@ -1973,6 +1973,31 @@ export const contentTypes = {
             },
             image: {
                 codename: 'image',
+                id: '0000000-0000-0000-0000-000000000003',
+                externalId: undefined,
+                name: 'Image',
+                required: false,
+                type: 'asset'
+            },
+        }
+    },
+
+    builder_heading: {
+        codename: 'builder_heading',
+        id: '0000000-0000-0000-0000-000000000001',
+        externalId: undefined,
+        name: 'Builder Heading',
+        elements: {
+            title: {
+                codename: 'title',
+                id: '0000000-0000-0000-0000-000000000002',
+                externalId: undefined,
+                name: 'Title',
+                required: false,
+                type: 'text'
+            },
+            image: {
+                codename: 'type',
                 id: '0000000-0000-0000-0000-000000000003',
                 externalId: undefined,
                 name: 'Image',
