@@ -29,7 +29,6 @@ export const ArticleListingComponent: FC<Props> = (props) => {
       );
 
       const newData = await response.json();
-      console.log(newData);
       setArticles(newData.articles);
       setTotalCount(newData.totalCount);
     };

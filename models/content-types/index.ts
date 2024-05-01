@@ -26,3 +26,4 @@ export * from './robotsTxt';
 export * from './siteConfiguration';
 export * from './testimonial';
 export * from './youTubeEmbed';
+export * from './banner';

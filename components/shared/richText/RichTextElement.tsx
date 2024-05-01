@@ -8,7 +8,7 @@ import {
   PortableTextTable,
   nodeParse,
   transformToPortableText,
-} from '@kontent-ai/rich-text-resolver';
+} from "@kontent-ai/rich-text-resolver";
 import {
   PortableText,
   PortableTextMarkComponentProps,
@@ -32,6 +32,7 @@ import {
   ProductListing,
   PanelListing,
   MilestoneListing,
+  Banner,
 } from "../../../models";
 import { InternalLink } from "../internalLinks/InternalLink";
 import { TestimonialComponent } from "../Testimonial";
@@ -50,6 +51,7 @@ import { BuildError } from "../ui/BuildError";
 import { sanitizeFirstChildText } from "../../../lib/anchors";
 import { siteCodename } from "../../../lib/utils/env";
 import { ContentChunkComponent } from "../ContentChunk";
+import { BannerComponent } from "../Banner";
 
 /*
 -----
@@ -156,6 +158,8 @@ export const createDefaultResolvers = (
               item={componentItem as MilestoneListing}
             />
           );
+        case contentTypes.banner.codename:
+          return <BannerComponent item={componentItem as Banner} />;
         case contentTypes.hero_unit.codename:
           return <HeroUnitComponent item={componentItem as HeroUnit} />;
         case contentTypes.article_listing.codename:

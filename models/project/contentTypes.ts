@@ -1955,6 +1955,27 @@ export const contentTypes = {
     },
 
     /**
+     * Banner
+     */
+    banner: {
+        codename: 'banner',
+        id: '0000000-0000-0000-0000-000000000001',
+        externalId: undefined,
+        name: 'Banner',
+        elements: {
+            title: {
+                codename: 'title',
+                id: '0000000-0000-0000-0000-000000000002',
+                externalId: undefined,
+                name: 'Title',
+                required: false,
+                type: 'text'
+            }
+        }
+    },
+
+
+    /**
      * Form  Hubspot integration
      */
     form: {
