@@ -25,9 +25,11 @@ export const ArticleListingComponent: FC<Props> = (props) => {
   useEffect(() => {
     const getArticles = async () => {
       const response = await fetch(
-        `/api/articles?preview=${isPreview}&category=${categories}&language=${router.locale}&page=1&pageSize=3`
+        `/api/articles?preview=${isPreview}&category=${categories}&language=${router.locale}&page=1&pageSize=4`
       );
+
       const newData = await response.json();
+      console.log(newData);
       setArticles(newData.articles);
       setTotalCount(newData.totalCount);
     };
@@ -36,7 +38,7 @@ export const ArticleListingComponent: FC<Props> = (props) => {
 
   return (
     <>
-      <h2 className="m-0 mb-4">{props.item.elements.title?.value}</h2>
+      <h2 className="m-0 mb-8 mt-8">{props.item.elements.title?.value}</h2>
       <ul
         className="flex lg:flex-row flex-col gap-6 p-0"
         {...createItemSmartLink(

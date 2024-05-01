@@ -45,13 +45,13 @@ export const ArticleItem: FC<Props> = (props) => {
               className="object-cover h-full m-0 p-0 rounded-t-lg"
             />
           </figure>
-          {props.publishingDate && (
+          {/* {props.publishingDate && (
             <div className="w-fit p-2 bg-gray-800 text-white opacity-90 font-normal line-clamp-6 absolute right-0 translate-y-[-100%]">
               <p className="m-0 w-fit">
                 {formatDate(props.publishingDate, props.locale)}
               </p>
             </div>
-          )}
+          )} */}
         </div>
         <div className="grow p-5">
           <h3 className="mb-2 mt-4 text-xl font-bold tracking-tight text-gray-900 no-underline line-clamp-2 ">
