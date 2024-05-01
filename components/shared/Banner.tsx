@@ -11,19 +11,23 @@ type Props = Readonly<{
 
 export const BannerComponent: FC<Props> = (props) => {
   console.log(props);
-  const overlayPosition = props.item.elements.overlayPosition?.value[0]?.name;
-  const overlaySize = props.item.elements.overlaySize?.value;
+  var overlayPosition = props.item.elements.overlayPosition?.value[0]?.name;
+  const overlaySize = props.item.elements.overlaySize?.value + "px";
   const overlayColor = props.item.elements.overlayColor?.value[0].codename;
 
   var overlayTop = "50%";
   var overlayLeft = "";
+  var overlayRight = "";
   var overlayTransform = "";
   if (overlayPosition === "Center") {
-    //overlayTop = "50%";
     overlayLeft = "50%";
     overlayTransform = "translate(-50%, -50%)";
   } else if (overlayPosition === "Left") {
     overlayLeft = "15%";
+    overlayTransform = "translate(-15%, -50%)";
+  } else if (overlayPosition === "Right") {
+    overlayRight = "15%";
+    overlayTransform = "translate(15%, -50%)";
   }
 
   return (
@@ -45,6 +49,7 @@ export const BannerComponent: FC<Props> = (props) => {
           position: "absolute",
           top: overlayTop,
           left: overlayLeft,
+          right: overlayRight,
           fontSize: overlaySize,
           transform: overlayTransform,
           color: overlayColor,
