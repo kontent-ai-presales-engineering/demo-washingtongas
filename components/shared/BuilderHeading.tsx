@@ -10,11 +10,11 @@ type Props = Readonly<{
 }>;
 
 export const BuilderHeadingComponent: FC<Props> = (props) => {
+  var type = props.item.elements.type?.value[0].codename;
   var family = props.item.elements.fontSettingsFamily?.value[0].codename;
   var size = props.item.elements.fontSettingsSize?.value;
   var color = props.item.elements.fontSettingsColor?.value[0].codename;
-  let position = props.item.elements.fontSettingsPosition?.value[0]
-    .codename as string;
+  var position = props.item.elements.fontSettingsPosition?.value[0].codename;
 
   if (family === "sans_serif") {
     family = "sans-serif";
@@ -28,31 +28,44 @@ export const BuilderHeadingComponent: FC<Props> = (props) => {
     color = "#4eaf6b";
   }
 
+  if (type === "none") {
+    //fontSize = size;
+  }
+  var display = "block";
+  var fontSize = "2em";
+  var marginTop = "0.67em";
+  var marginBottom = "0.67em";
+  var marginLeft = "0";
+  var marginRight = "0";
+  var fontWeight = "bold";
+
   return (
     <div
       {...createItemSmartLink(props.item.system.id, props.item.system.name)}
       {...createElementSmartLink(contentTypes.form.elements.form.codename)}
       style={{
+        display: "flex",
         width: "100%",
         marginTop: "20px",
         marginBottom: "20px",
-        textAlign: position,
+        justifyContent: position,
       }}
     >
-      <h1
+      <div
         style={{
-          //left: "50%",
-          //right: right,
-          fontSize: size + "px",
-          //transform: transform,
+          //fontSize: size + "px",
           color: color,
-          //textShadow: "0 0 6px rgba(0, 0, 0, .55)",
-          //fontWeight: 600,
-          //lineHeight: 1.125,
+          display: display,
+          fontSize: fontSize,
+          marginTop: marginTop,
+          marginBottom: marginBottom,
+          marginLeft: marginLeft,
+          marginRight: marginRight,
+          fontWeight: fontWeight,
         }}
       >
         {props.item.elements.text.value}
-      </h1>
+      </div>
     </div>
   );
 };
