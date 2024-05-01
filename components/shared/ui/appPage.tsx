@@ -115,7 +115,7 @@ export const AppPage: FC<Props> = ({
           className="py-24 md:px-6 px-3 sm:px-8 max-w-screen-xl grow h-full w-screen"
           {...createItemSmartLink(item.system.id, item.system.name, true)}
         >
-          <div className="prose w-full max-w-full pt-16">{children}</div>
+          <div className="prose w-full max-w-full pt-4">{children}</div>
         </main>
         {item.elements.hide.value.length === 0 ||
         !item.elements.hide.value.find(

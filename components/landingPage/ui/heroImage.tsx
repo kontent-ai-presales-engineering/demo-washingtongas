@@ -14,8 +14,9 @@ type Props = Readonly<{
 
 export const HeroImage: FC<Props> = (props) => (
   <figure
-    className={`relative m-0 w-full h-[32rem] ${props.className ?? ""}`}
+    className={`relative m-0 w-full ${props.className ?? ""}`}
     {...createItemSmartLink(props.itemId, props.itemName)}
+    style={{ height: "350px" }}
   >
     {props.type?.startsWith("image") && (
       <Image
@@ -36,8 +37,8 @@ export const HeroImage: FC<Props> = (props) => (
         className="object-cover"
       />
     )}
-    <div className="absolute inset-0 h-full flex flex-col items-center md:items-start justify-end pb-16 px-6 mx-10">
-      <div className="backdrop-blur-sm bg-black/50 flex flex-col mx-auto rounded-lg p-4">
+    <div className="inset-0 h-full flex flex-col justify-end pb-16 items-start">
+      <div className="backdrop-blur-none mx-auto rounded-lg p-4 w-4/5 text-4xl">
         {props.children}
       </div>
     </div>

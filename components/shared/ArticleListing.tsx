@@ -1,10 +1,10 @@
-import { FC, useEffect, useState } from 'react';
-import { Article, ArticleListing } from '../../models';
-import { createItemSmartLink } from '../../lib/utils/smartLinkUtils';
-import { useSiteCodename } from './siteCodenameContext';
-import { useRouter } from 'next/router';
-import { ArticleItem } from '../listingPage/ArticleItem';
-import { resolveUrlPath } from '../../lib/routing';
+import { FC, useEffect, useState } from "react";
+import { Article, ArticleListing } from "../../models";
+import { createItemSmartLink } from "../../lib/utils/smartLinkUtils";
+import { useSiteCodename } from "./siteCodenameContext";
+import { useRouter } from "next/router";
+import { ArticleItem } from "../listingPage/ArticleItem";
+import { resolveUrlPath } from "../../lib/routing";
 
 type Props = Readonly<{
   item: ArticleListing;
@@ -20,7 +20,7 @@ export const ArticleListingComponent: FC<Props> = (props) => {
   >();
   const categories = props.item.elements.articleType?.value
     .map((term) => term.codename)
-    .join(', ');
+    .join(", ");
 
   useEffect(() => {
     const getArticles = async () => {
@@ -36,9 +36,9 @@ export const ArticleListingComponent: FC<Props> = (props) => {
 
   return (
     <>
-      <h2 className='m-0 mt-16'>{props.item.elements.title?.value}</h2>
+      <h2 className="m-0 mb-4">{props.item.elements.title?.value}</h2>
       <ul
-        className='flex lg:flex-row flex-col gap-6 p-0'
+        className="flex lg:flex-row flex-col gap-6 p-0"
         {...createItemSmartLink(
           props.item.system.id,
           props.item.system.name,
@@ -55,7 +55,7 @@ export const ArticleListingComponent: FC<Props> = (props) => {
             imageUrl={a.elements.heroImage.value[0]?.url}
             publishingDate={a.elements.publishingDate?.value}
             detailUrl={resolveUrlPath({
-              type: 'article',
+              type: "article",
               slug: a.elements.url?.value,
             })}
             locale={a.system.language}
@@ -66,4 +66,4 @@ export const ArticleListingComponent: FC<Props> = (props) => {
   );
 };
 
-ArticleListingComponent.displayName = 'ArticleListingComponent';
+ArticleListingComponent.displayName = "ArticleListingComponent";

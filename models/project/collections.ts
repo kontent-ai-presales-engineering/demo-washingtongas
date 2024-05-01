@@ -30,12 +30,12 @@ export const collections = {
     },
 
     /**
-     * Karma Manufacturing
+     * Washington Gas
      */
     sandbox: {
         codename: 'sandbox',
         id: '3905681f-dce2-4a90-8dab-425d4b73ea9c',
-        name: 'Karma Manufacturing'
+        name: 'Washington Gas'
     },
 
     /**
