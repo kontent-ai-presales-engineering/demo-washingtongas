@@ -28,16 +28,32 @@ export const BuilderHeadingComponent: FC<Props> = (props) => {
     color = "#4eaf6b";
   }
 
+  var display = "";
+  var fontSize = null;
+  var marginTop = "";
+  var marginBottom = "";
+  var marginLeft = "";
+  var marginRight = "";
+  var fontWeight = "";
   if (type === "none") {
-    //fontSize = size;
+    fontSize = size;
+  } else if (type === "h1") {
+    display = "block";
+    fontSize = "2em";
+    marginTop = "0.67em";
+    marginBottom = "0.67em";
+    marginLeft = "0";
+    marginRight = "0";
+    fontWeight = "bold";
+  } else if (type === "h2") {
+    display = "block";
+    fontSize = "1.5em";
+    marginTop = "0.83em";
+    marginBottom = "0.83em";
+    marginLeft = "0";
+    marginRight = "0";
+    fontWeight = "bold";
   }
-  var display = "block";
-  var fontSize = "2em";
-  var marginTop = "0.67em";
-  var marginBottom = "0.67em";
-  var marginLeft = "0";
-  var marginRight = "0";
-  var fontWeight = "bold";
 
   return (
     <div
