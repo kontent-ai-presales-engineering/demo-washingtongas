@@ -55,6 +55,7 @@ export const PersonasBar: FC<Props> = (props) => {
       setSelectedPersona(personaTerm);
       setIsOpen(false);
       document.cookie = `${personaCookieName}=${persona.codename}; path=/;`;
+      window.location.reload();
     } else {
       // Set the cookie to expire in the past, effectively clearing it
       setSelectedPersona(null);
