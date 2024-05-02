@@ -71,12 +71,12 @@ export const BuilderHeadingComponent: FC<Props> = (props) => {
         style={{
           //fontSize: size + "px",
           color: color,
-          display: display,
-          fontSize: fontSize,
-          marginTop: marginTop,
-          marginBottom: marginBottom,
-          marginLeft: marginLeft,
-          marginRight: marginRight,
+          //display: display,
+          fontSize: size + "px",
+          //marginTop: marginTop,
+          //marginBottom: marginBottom,
+          //marginLeft: marginLeft,
+          //marginRight: marginRight,
           fontWeight: fontWeight,
         }}
       >
