@@ -67,7 +67,7 @@ export const BuilderHeadingComponent: FC<Props> = (props) => {
         justifyContent: position,
       }}
     >
-      <div
+      <h1
         style={{
           //fontSize: size + "px",
           color: color,
@@ -81,7 +81,7 @@ export const BuilderHeadingComponent: FC<Props> = (props) => {
         }}
       >
         {props.item.elements.text.value}
-      </div>
+      </h1>
     </div>
   );
 };
