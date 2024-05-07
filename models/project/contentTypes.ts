@@ -1955,60 +1955,6 @@ export const contentTypes = {
     },
 
     /**
-     * Builder Banner
-     */
-    builder_banner: {
-        codename: 'builder_banner',
-        id: '0000000-0000-0000-0000-000000000001',
-        externalId: undefined,
-        name: 'Builder Banner',
-        elements: {
-            title: {
-                codename: 'title',
-                id: '0000000-0000-0000-0000-000000000002',
-                externalId: undefined,
-                name: 'Title',
-                required: false,
-                type: 'text'
-            },
-            image: {
-                codename: 'image',
-                id: '0000000-0000-0000-0000-000000000003',
-                externalId: undefined,
-                name: 'Image',
-                required: false,
-                type: 'asset'
-            },
-        }
-    },
-
-    builder_heading: {
-        codename: 'builder_heading',
-        id: '0000000-0000-0000-0000-000000000001',
-        externalId: undefined,
-        name: 'Builder Heading',
-        elements: {
-            title: {
-                codename: 'title',
-                id: '0000000-0000-0000-0000-000000000002',
-                externalId: undefined,
-                name: 'Title',
-                required: false,
-                type: 'text'
-            },
-            image: {
-                codename: 'type',
-                id: '0000000-0000-0000-0000-000000000003',
-                externalId: undefined,
-                name: 'Image',
-                required: false,
-                type: 'asset'
-            },
-        }
-    },
-
-
-    /**
      * Form  Hubspot integration
      */
     form: {
@@ -2109,18 +2055,6 @@ export const contentTypes = {
                 name: 'Content',
                 required: false,
                 type: 'rich_text'
-            },
-
-            /**
-             * Focal point (custom)
-             */
-            focal_point: {
-                codename: 'focal_point',
-                id: '6ab747d0-1b82-4b26-ae65-303842b18086',
-                externalId: undefined,
-                name: 'Focal point',
-                required: false,
-                type: 'custom'
             },
 
             /**
@@ -2550,18 +2484,6 @@ export const contentTypes = {
             },
 
             /**
-             * Images (custom)
-             */
-            pimberly_images: {
-                codename: 'pimberly_images',
-                id: '336378f3-8aab-4ac8-9e61-1e76a78cf9fe',
-                externalId: undefined,
-                name: 'Images',
-                required: false,
-                type: 'custom'
-            },
-
-            /**
              * Keywords (text)
              */
             seo_metadata__keywords: {
@@ -2683,18 +2605,6 @@ export const contentTypes = {
                 name: 'Product category',
                 required: false,
                 type: 'taxonomy'
-            },
-
-            /**
-             * Product ID (custom)
-             */
-            productid: {
-                codename: 'productid',
-                id: 'd182f261-6ddb-498a-851f-20527425e686',
-                externalId: undefined,
-                name: 'Product ID',
-                required: false,
-                type: 'custom'
             },
 
             /**
@@ -2871,29 +2781,6 @@ export const contentTypes = {
                 name: 'Content',
                 required: false,
                 type: 'text'
-            }
-        }
-    },
-
-    /**
-     * Site Configuration
-     */
-    site_configuration: {
-        codename: 'site_configuration',
-        id: '971ded8c-469f-476d-b7c4-716842db4027',
-        externalId: undefined,
-        name: 'Site Configuration',
-        elements: {
-            /**
-             * Translation (custom)
-             */
-            translation: {
-                codename: 'translation',
-                id: '1fd5cae8-cd8a-46fd-80f4-18c92897d543',
-                externalId: undefined,
-                name: 'Translation',
-                required: false,
-                type: 'custom'
             }
         }
     },

@@ -1,4 +1,3 @@
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
 import { Elements } from "@kontent-ai/delivery-sdk";
 import {
   PortableTextComponent,
@@ -22,7 +21,6 @@ import {
   contentTypes,
   Testimonial,
   Carousel,
-  FormHubspotIntegration,
   HeroUnit,
   ArticleListing,
   EventListing,
@@ -32,12 +30,12 @@ import {
   ProductListing,
   PanelListing,
   MilestoneListing,
-  BuilderBanner,
-  BuilderHeading,
+  FormHubspotIntegration,
 } from "../../../models";
 import { InternalLink } from "../internalLinks/InternalLink";
 import { TestimonialComponent } from "../Testimonial";
-import { HubSpotFormComponent } from "../HubSpotForm";
+import { CarouselComponent } from "../Carousel";
+import { HeroUnitComponent } from "../HeroUnit";
 import { ArticleListingComponent } from "../ArticleListing";
 import { EventListingComponent } from "../EventListing";
 import { MilestoneListingComponent } from "../MilestoneListing";
@@ -50,33 +48,8 @@ import { ProductListingComponent } from "../ProductListing";
 import { PanelListingComponent } from "../PanelListing";
 import { BuildError } from "../ui/BuildError";
 import { sanitizeFirstChildText } from "../../../lib/anchors";
-import { siteCodename } from "../../../lib/utils/env";
 import { ContentChunkComponent } from "../ContentChunk";
-import { BuilderBannerComponent } from "../BuilderBanner";
-import { BuilderHeadingComponent } from "../BuilderHeading";
-
-/*
------
-Page layout modifiers
------
-1. Default carousel
-import { CarouselComponent } from '../Carousel';
-
-2. Fullwidth carousel
-import { CarouselComponent } from '../Carousel-fullwidth';
-
-
-1. Default HeroUnit (single image banner)
-import { HeroUnitComponent } from '../HeroUnit';
-
-2. Fullwidth HeroUnit
-import { HeroUnitComponent } from '../HeroUnit--fullwidth';
-
-*/
-
-// Replace line below with desired menu type from above
-import { CarouselComponent } from "../Carousel--fullwidth";
-import { HeroUnitComponent } from "../HeroUnit--fullwidth";
+import { HubSpotFormComponent } from "../HubSpotForm";
 
 type ElementProps = Readonly<{
   element: Elements.RichTextElement;
@@ -160,19 +133,17 @@ export const createDefaultResolvers = (
               item={componentItem as MilestoneListing}
             />
           );
-        case contentTypes.builder_banner.codename:
-          return (
-            <BuilderBannerComponent item={componentItem as BuilderBanner} />
-          );
-        case contentTypes.builder_heading.codename:
-          return (
-            <BuilderHeadingComponent item={componentItem as BuilderHeading} />
-          );
         case contentTypes.hero_unit.codename:
           return <HeroUnitComponent item={componentItem as HeroUnit} />;
         case contentTypes.article_listing.codename:
           return (
             <ArticleListingComponent item={componentItem as ArticleListing} />
+          );
+        case contentTypes.form.codename:
+          return (
+            <HubSpotFormComponent
+              item={componentItem as FormHubspotIntegration}
+            />
           );
         case contentTypes.event_listing.codename:
           return <EventListingComponent item={componentItem as EventListing} />;
@@ -184,12 +155,6 @@ export const createDefaultResolvers = (
           return <ContentChunkComponent item={componentItem as ContentChunk} />;
         case contentTypes.testimonial.codename:
           return <TestimonialComponent item={componentItem as Testimonial} />;
-        case contentTypes.form.codename:
-          return (
-            <HubSpotFormComponent
-              item={componentItem as FormHubspotIntegration}
-            />
-          );
         case contentTypes.carousel.codename:
           return <CarouselComponent item={componentItem as Carousel} />;
         case contentTypes.youtube_embed.codename:
@@ -229,7 +194,6 @@ export const createDefaultResolvers = (
       if (!link) {
         return <>{children}</>;
       }
-
       return (
         <InternalLink link={link} language={language}>
           {children}
@@ -248,9 +212,6 @@ export const createDefaultResolvers = (
           title={value?.title}
         >
           {children}
-          {!!value["data-new-window"] && (
-            <ArrowTopRightOnSquareIcon className="w-5 inline-block ml-1" />
-          )}
         </a>
       );
     },

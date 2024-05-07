@@ -51,7 +51,6 @@ export const BuilderBannerComponent: FC<Props> = (props) => {
   } else {
     h = height;
   }
-
   var w = null;
   if (width === null) {
     w = "100%";
@@ -67,6 +66,8 @@ export const BuilderBannerComponent: FC<Props> = (props) => {
       style={{
         position: "relative",
         fontFamily: "inherit",
+        width: w + "px",
+        height: h + "px",
       }}
     >
       <img
